@@ -71,7 +71,7 @@ class PlanExtractor(QMainWindow, mainDlg_class):
 
     def startBtnFunction(self):
         try:
-            chdir(self.default_path)
+            # chdir(self.default_path)
 
             self.progressBar.setValue(0)
             self.progressBar.setMaximum(len(self.loadList))
@@ -95,13 +95,10 @@ class PlanExtractor(QMainWindow, mainDlg_class):
 
                 # Make directory to save result files
                 try:
-                    chdir("../")
-                    imwrite('./result/'+newName, result)
+                    mkdir('../result')
                 except Exception as e:
-                    if "[WinError 2] 지정된 파일을 찾을 수 없습니다: './result/'" in str(e) or\
-                            "No such file or directory" in str(e):
-                        mkdir('./result')
-                    imwrite('./result/' + newName, result)
+                    pass
+                imwrite('../result/' + newName, result)
 
                 self.textEdit_jpgList.setText(currentState)
 
@@ -129,6 +126,7 @@ class PlanExtractor(QMainWindow, mainDlg_class):
         self.startBtn.setEnabled(False)
         self.loadList = []
         self.progressBar.setValue(0)
+        self.textEdit_jpgList.setText("")
 
 if __name__ == "__main__":
     app = QApplication(argv)
