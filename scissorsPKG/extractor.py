@@ -65,7 +65,6 @@ def find_plan(img, mask, show=False):
 
     try:
         for i, contour in enumerate(contours):
-            break
             [x, y, w, h] = boundingRect(contour)
             area = contourArea(contour)
             # measure Square size
